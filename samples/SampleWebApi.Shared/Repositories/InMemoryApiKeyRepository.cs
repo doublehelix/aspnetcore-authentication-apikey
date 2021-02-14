@@ -23,5 +23,12 @@ namespace SampleWebApi.Repositories
 			var apiKey = _cache.FirstOrDefault(k => k.Key.Equals(key, StringComparison.OrdinalIgnoreCase));
 			return Task.FromResult(apiKey);
 		}
-	}
+
+        public Task<IApiKey> GetApiKeyAsync(ApiKeyValidateKeyContext context)
+        {
+			var apiKey = _cache.FirstOrDefault(k => k.Key.Equals(context.ApiKey, StringComparison.OrdinalIgnoreCase));
+			//// Additional advanced validation based on context would be done here...
+			return Task.FromResult(apiKey);
+		}
+    }
 }

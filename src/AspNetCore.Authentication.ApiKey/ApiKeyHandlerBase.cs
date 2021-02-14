@@ -198,7 +198,14 @@ namespace AspNetCore.Authentication.ApiKey
 
 			try
 			{
-				return await apiKeyProvider.ProvideAsync(apiKey).ConfigureAwait(false);
+				var validateApiContext = new ApiKeyValidateKeyContext(Context, Scheme, Options, apiKey);
+				var apiKeyResult = await apiKeyProvider.ProvideAsync(validateApiContext).ConfigureAwait(false);
+				if (apiKeyResult is null)
+                {
+					apiKeyResult = await apiKeyProvider.ProvideAsync(apiKey).ConfigureAwait(false);
+				}
+
+				return apiKeyResult;
 			}
 			finally
 			{

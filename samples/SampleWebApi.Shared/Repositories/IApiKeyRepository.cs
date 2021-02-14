@@ -9,5 +9,7 @@ namespace SampleWebApi.Repositories
     public interface IApiKeyRepository
     {
         Task<IApiKey> GetApiKeyAsync(string key);
+
+        Task<IApiKey> GetApiKeyAsync(ApiKeyValidateKeyContext context);
     }
 }

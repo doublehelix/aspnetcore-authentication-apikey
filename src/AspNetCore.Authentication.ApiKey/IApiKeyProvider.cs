@@ -16,5 +16,12 @@ namespace AspNetCore.Authentication.ApiKey
 		/// <param name="key"></param>
 		/// <returns></returns>
 		Task<IApiKey> ProvideAsync(string key);
+
+		/// <summary>
+		/// Validates the key and provides with and instance of <see cref="IApiKey"/>.
+		/// </summary>
+		/// <param name="context">The validation context.</param>
+		/// <returns>A validated API Key.</returns>
+		Task<IApiKey> ProvideAsync(ApiKeyValidateKeyContext context);
 	}
 }

@@ -28,5 +28,18 @@ namespace SampleWebApi.Services
 				throw;
 			}
 		}
+
+		public async Task<IApiKey> ProvideAsync(ApiKeyValidateKeyContext context)
+		{
+			try
+			{
+				return await _apiKeyRepository.GetApiKeyAsync(context);
+			}
+			catch (System.Exception exception)
+			{
+				_logger.LogError(exception, exception.Message);
+				throw;
+			}
+		}
 	}
 }
